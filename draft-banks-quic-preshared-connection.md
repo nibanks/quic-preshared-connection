@@ -1,7 +1,7 @@
 ---
 title: "QUIC Preshared Connection"
 abbrev: "QUIC Preshared Connection"
-docname: draft-nibanks-quic-preshared-connection
+docname: draft-banks-quic-preshared-connection
 date: {DATE}
 category: exp
 ipr: trust200902
