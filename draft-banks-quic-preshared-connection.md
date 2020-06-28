@@ -94,7 +94,7 @@ non-empty value as a connection error of type TRANSPORT_PARAMETER_ERROR.
 
 Advertising the preshared_connection_support transport parameter indicates that
 the endpoint supports creating new connections from preshared connection
-information (PCI).  Both sides must advertise support for the feature for it to
+information (PSCI).  Both sides must advertise support for the feature for it to
 be considered successfully negotiated.
 
 Once negotiated, either endpoint can request to create a new preshared
@@ -104,7 +104,7 @@ NEW_PRESHARED_CONNECTION frame.
 
 # Preshared Connection Information
 
-This document defines PCI as an explicit set and format of information that can
+This document defines PSCI as an explicit set and format of information that can
 be used to create a new QUIC connection.  The format uses the same encoding
 scheme used by QUIC transport paramters (reference/description TODO).  The
 following are the possible parameters (all required):
@@ -121,7 +121,7 @@ TODO - Expand on the details of the above parameters.
 # Exchanging the Information
 
 The REQUEST_PRESHARED_CONNECTION and NEW_PRESHARED_CONNECTION frames both
-contain the PCI the peer needs in order to be able to connect to the endpoint.
+contain the PSCI the peer needs in order to be able to connect to the endpoint.
 A NEW_PRESHARED_CONNECTION frame can be matched with a previous
 REQUEST_PRESHARED_CONNECTION frame via the Traffic Secret parameter.  The
 endpoint that sends the REQUEST_PRESHARED_CONNECTION frame is considered the
@@ -131,7 +131,7 @@ the NEW_PRESHARED_CONNECTION frame is considered the server.
 Once the NEW_PRESHARED_CONNECTION frame has been acknowledged the new connection
 is considered started and both endpoint can start using it.
 
-Also note, the above frames are the built-in way to directly exchange PCI for
+Also note, the above frames are the built-in way to directly exchange PSCI for
 each endpoint for the new preshared connection.  It is also possible for an out
 of band method to be used to exchange the information.  For instance, in the
 scenario where two clients of the same server wish to create a P2P connection
@@ -140,11 +140,11 @@ can be used to negotiate and exchange the parameters.
 
 # Starting the Preshared Connection
 
-Once the PCI is exchanged the new preshared connection is immediately considered
-to be started; both endpoints can immediately start sending 1-RTT packets.  This
-is accomplished by using the Traffic Secret exchanged in the PCI to generate
-1-RTT keys just as a normal QUIC connection does, when the traffic secrets are
-derived from the TLS handshake.
+Once the PSCI is exchanged the new preshared connection is immediately
+considered to be started; both endpoints can immediately start sending 1-RTT
+packets.  This is accomplished by using the Traffic Secret exchanged in the PSCI
+to generate 1-RTT keys just as a normal QUIC connection does, when the traffic
+secrets are derived from the TLS handshake.
 
 Both endpoints should immediately start the connection by sending HANDSHAKE_DONE
 frames to each other, along with any other application data.  Receipt of the
